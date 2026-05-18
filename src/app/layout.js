@@ -2,6 +2,7 @@ import { Jost } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import Navbar from "@/components/shared/Navbar";
+import { Toaster } from "react-hot-toast";
 
 const jostFont = Jost({
   variable: "--font-jost-sans",
@@ -25,6 +26,10 @@ export default function RootLayout({ children }) {
           <Navbar />
           <div className="max-w-7xl mx-auto">
             {children}
+            <Toaster
+              position="top-center"
+              reverseOrder={false}
+            />
           </div>
         </Providers>
       </body>

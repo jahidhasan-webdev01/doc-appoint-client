@@ -1,16 +1,36 @@
 "use client"
 
 import Logo from "@/components/ui/Logo";
-import { Button, FieldError, Form, Input, Label, Separator, TextField, } from "@heroui/react";
+import { authClient } from "@/lib/auth-client";
+import { Button, FieldError, Form, Input, Label, Separator, Spinner, TextField, } from "@heroui/react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 
 const RegisterPage = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const [isLoading, setIsLoading] = useState(false)
 
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        setIsLoading(true)
 
-    const onSubmit = async (data) => {
+        const formData = new FormData(e.currentTarget);
+        const userData = Object.fromEntries(formData);
+
+        const { data, error } = await authClient.signUp.email(userData);
+
+        setIsLoading(false);
+
+        if (error) {
+            toast.error(error?.message || "Registration failed. Please try again.");
+        } else {
+            toast.success("Account created successfully!");
+            e.target.reset();
+            redirect("/login");
+        }
     }
 
     return (
@@ -116,8 +136,20 @@ const RegisterPage = () => {
                     </TextField>
 
                     <div>
-                        <Button type="submit" className="rounded-none w-full">
-                            Register
+                        <Button
+                            type="submit"
+                            className="rounded-none w-full"
+                            isDisabled={isLoading}
+                        >
+                            {
+                                isLoading ?
+                                    <>
+                                        <Spinner color="current" size="sm" />
+                                        Creating User
+                                    </>
+                                    :
+                                    "Register"
+                            }
                         </Button>
                     </div>
 
@@ -132,7 +164,11 @@ const RegisterPage = () => {
                     </div>
 
                     <div>
-                        <Button className="w-full" variant="outline">
+                        <Button
+                            className="w-full"
+                            variant="outline"
+                            isDisabled={isLoading}
+                        >
                             <FaGoogle />
                             Log in with Google
                         </Button>
