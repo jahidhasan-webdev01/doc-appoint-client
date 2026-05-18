@@ -20,10 +20,12 @@ export default function RootLayout({ children }) {
       className={`${jostFont.className} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col" suppressHydrationWarning>
+      <body className="min-h-full flex flex-col px-2 md:px-5" suppressHydrationWarning>
         <Providers>
           <Navbar />
-          {children}
+          <div className="max-w-7xl mx-auto">
+            {children}
+          </div>
         </Providers>
       </body>
     </html>
