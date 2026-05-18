@@ -44,7 +44,7 @@ const Navbar = () => {
             </button>
             <Logo />
           </div>
-          <ul className="hidden items-center gap-4 md:flex">
+          <ul className="hidden items-center gap-4 md:flex text-sm">
             <li>
               <Link href="/">Home</Link>
             </li>
@@ -58,10 +58,10 @@ const Navbar = () => {
 
           <div className="flex flex-row gap-2">
             <ThemeToggle />
-            <Link href="/register" className="[text-decoration:none]">
+            <Link href="/register">
               <Button variant="outline" size="sm">Register</Button>
             </Link>
-            <Link href="/login" className="[text-decoration:none]">
+            <Link href="/login">
               <Button size="sm">Login</Button>
             </Link>
           </div>
