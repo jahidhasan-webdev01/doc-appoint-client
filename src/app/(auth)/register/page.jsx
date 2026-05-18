@@ -1,5 +1,6 @@
 "use client"
 
+import GoogleLogin from "@/components/ui/GoogleLogin";
 import Logo from "@/components/ui/Logo";
 import { authClient } from "@/lib/auth-client";
 import { Button, FieldError, Form, Input, Label, Separator, Spinner, TextField, } from "@heroui/react";
@@ -163,16 +164,7 @@ const RegisterPage = () => {
                         <h1 className="text-sm font-bold text-center mt-2">OR</h1>
                     </div>
 
-                    <div>
-                        <Button
-                            className="w-full"
-                            variant="outline"
-                            isDisabled={isLoading}
-                        >
-                            <FaGoogle />
-                            Log in with Google
-                        </Button>
-                    </div>
+                    <GoogleLogin isLoading={isLoading} setIsLoading={setIsLoading} />
 
                 </Form>
             </div>
