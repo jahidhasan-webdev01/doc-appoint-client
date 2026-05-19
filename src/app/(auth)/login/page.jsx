@@ -161,7 +161,7 @@ const LoginPage = () => {
                         </h1>
                     </div>
 
-                    <GoogleLogin />
+                    <GoogleLogin callbackUrl={callbackUrl}/>
                 </Form>
             </div>
         </div>

@@ -1,8 +1,5 @@
-import Image from "next/image";
 import SectionTitle from "../ui/SectionTitle";
-import { Button, Separator } from "@heroui/react";
-import { MdOutlineAddLocation, MdOutlineLocalHospital } from "react-icons/md";
-import Link from "next/link";
+import DoctorCard from "../ui/DoctorCard";
 
 const TopRatedDoctors = () => {
     const data = [
@@ -43,52 +40,13 @@ const TopRatedDoctors = () => {
             "fee": 800
         }
     ]
+    
     return (
         <div className="py-10">
             <SectionTitle title="Top Rated Doctors" />
             <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
                 {
-                    data.map((doctor, index) => {
-                        const { _id, name, description, image, hospital, specialty, fee, experience, location } = doctor;
-                        return <div
-                            key={index}
-                            className="border rounded-md overflow-hidden flex flex-col"
-                        >
-                            <div className="relative h-64 w-full bg-gray-100">
-                                <Image
-                                    src={image}
-                                    alt={name}
-                                    fill
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                    className="object-cover"
-                                />
-                                <p className="absolute top-2 right-0 bg-gray-200 text-sm px-3 py-0.5 rounded-l-full z-10">{experience} of experience</p>
-                            </div>
-
-                            <div className="p-5 space-y-2 flex-1 flex flex-col justify-between">
-                                <div className="space-y-2">
-                                    <div>
-                                        <h1 className="text-lg font-bold">{name}</h1>
-                                        <p className="font-semibold text-sm">{specialty}</p>
-                                    </div>
-                                    <p className="line-clamp-2">{description}</p>
-                                    <div className="flex flex-col">
-                                        <p className="inline-flex items-center gap-1 text-sm"><MdOutlineLocalHospital /> {hospital}</p>
-                                        <p className="inline-flex items-center gap-1 text-sm"><MdOutlineAddLocation /> {location}</p>
-                                    </div>
-                                </div>
-
-                                <Separator />
-
-                                <div className="flex justify-between items-center">
-                                    <p>Free: bdt {fee}</p>
-                                    <Link href={`/doctors/${_id}`}>
-                                        <Button className="rounded-none" size="xs" variant="outline">View Details</Button>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                    })
+                    data.map((doctor, index) => <DoctorCard key={index} doctor={doctor} />)
                 }
             </div>
         </div>
