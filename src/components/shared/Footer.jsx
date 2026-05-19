@@ -8,11 +8,11 @@ const Footer = () => {
             <div className="max-w-7xl mx-auto grid grid-cols-6 gap-5 lg:gap-10 xl:gap-20 py-10">
                 <div className="col-span-6 lg:col-span-2">
                     <Logo />
-                    <p className="mt-2">Make healthcare access faster, simpler, and more convenient for everyone.</p>
+                    <p className="mt-1">Make healthcare access faster, simpler, and more convenient for everyone.</p>
                 </div>
                 <div className="col-span-3 lg:col-span-2">
                     <h1 className="font-bold">Quick Links</h1>
-                    <ul className="mt-2 gap-4 text-sm">
+                    <ul className="mt-1 gap-4 text-sm">
                         <li>
                             <Link href="/">Home</Link>
                         </li>
@@ -26,7 +26,8 @@ const Footer = () => {
                 </div>
                 <div className="col-span-3 lg:col-span-2">
                     <h1 className="font-bold">Social</h1>
-                    <ul className="mt-2 gap-4 flex flex-row text-base">
+                    <ul className="mt-2
+                     gap-4 flex flex-row text-base">
                         <li>
                             <FaFacebookF className="cursor-pointer"/>
                         </li>

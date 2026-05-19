@@ -1,12 +1,13 @@
 import Image from "next/image";
 import SectionTitle from "../ui/SectionTitle";
 import { Button, Separator } from "@heroui/react";
-import { MdOutlineAddLocation } from "react-icons/md";
+import { MdOutlineAddLocation, MdOutlineLocalHospital } from "react-icons/md";
+import Link from "next/link";
 
 const TopRatedDoctors = () => {
     const data = [
         {
-            "id": "d1",
+            "_id": "d1",
             "name": "Dr. Ayesha Rahman",
             "specialty": "Cardiologist",
             "image": "https://png.pngtree.com/png-clipart/20231002/original/pngtree-young-afro-professional-doctor-png-image_13227671.png",
@@ -18,7 +19,7 @@ const TopRatedDoctors = () => {
             "fee": 800
         },
         {
-            "id": "d2",
+            "_id": "d2",
             "name": "Dr. Ayesha Rahman",
             "specialty": "Cardiologist",
             "image": "https://cdn.pixabay.com/photo/2016/09/29/19/55/doctor-1703644_640.jpg",
@@ -30,7 +31,7 @@ const TopRatedDoctors = () => {
             "fee": 800
         },
         {
-            "id": "d3",
+            "_id": "d3",
             "name": "Dr. Ayesha Rahman",
             "specialty": "Cardiologist",
             "image": "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI0LTAxL2hpcHBvdW5pY29ybl9hX3Bob3RvX29mX2FfbWlkZGxlX2FnZV9tYWxlX2luZGlhbl9kb2N0b3JfaXNvbGF0ZV9jZTVhYzE3YS1iNjk4LTQyYmMtODI3ZS03MTJjZDNlYWU2OWYucG5n.png",
@@ -48,7 +49,7 @@ const TopRatedDoctors = () => {
             <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
                 {
                     data.map((doctor, index) => {
-                        const { name, description, image, hospital, specialty, fee, experience } = doctor;
+                        const { _id, name, description, image, hospital, specialty, fee, experience, location } = doctor;
                         return <div
                             key={index}
                             className="border rounded-md overflow-hidden flex flex-col"
@@ -71,14 +72,19 @@ const TopRatedDoctors = () => {
                                         <p className="font-semibold text-sm">{specialty}</p>
                                     </div>
                                     <p className="line-clamp-2">{description}</p>
-                                    <p className="inline-flex items-center gap-1 text-sm"><MdOutlineAddLocation /> {hospital}</p>
+                                    <div className="flex flex-col">
+                                        <p className="inline-flex items-center gap-1 text-sm"><MdOutlineLocalHospital /> {hospital}</p>
+                                        <p className="inline-flex items-center gap-1 text-sm"><MdOutlineAddLocation /> {location}</p>
+                                    </div>
                                 </div>
 
                                 <Separator />
 
                                 <div className="flex justify-between items-center">
                                     <p>Free: bdt {fee}</p>
-                                    <Button className="rounded-none" size="xs" variant="outline">View Details</Button>
+                                    <Link href={`/doctors/${_id}`}>
+                                        <Button className="rounded-none" size="xs" variant="outline">View Details</Button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
