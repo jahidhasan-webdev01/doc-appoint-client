@@ -1,10 +1,23 @@
-import { getDoctorByID } from "@/lib/data";
-import { Button } from "@heroui/react";
+import BookAppointment from "@/components/doctor/BookAppointment";
+import { getDoctorByID } from "@/lib/server-actions";
 import Image from "next/image";
 
 const DoctorDetails = async ({ params }) => {
     const { id } = await params;
     const data = await getDoctorByID(id);
+
+    const destination = {
+  _id: "dest_001",
+  imageUrl: "https://i.ibb.co/7QpKsCX/paris.jpg",
+  price: 1299,
+  destinationName: "Paris Getaway",
+  duration: "7 Days / 6 Nights",
+  country: "France",
+  description:
+    "Explore the beauty of Paris with guided city tours, Eiffel Tower visits, and delicious French cuisine.",
+  category: "Romantic",
+  departureDate: "2026-06-15",
+};
 
     return (
         <div className="min-h-screen py-10">
@@ -80,8 +93,8 @@ const DoctorDetails = async ({ params }) => {
                             ))}
                         </div>
                     </div>
+                    <BookAppointment destination = {destination} doctorName={data?.name}/>
 
-                    <Button className="mt-5">Book an appointment</Button>
                 </div>
             </div>
         </div>

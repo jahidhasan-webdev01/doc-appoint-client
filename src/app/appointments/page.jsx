@@ -1,6 +1,6 @@
 import DoctorCard from "@/components/ui/DoctorCard";
 import SectionTitle from "@/components/ui/SectionTitle";
-import { getAllDoctors } from "@/lib/data";
+import { getAllDoctors } from "@/lib/server-actions";
 
 const AllAppointmentsPage = async () => {
     const data = await getAllDoctors();
