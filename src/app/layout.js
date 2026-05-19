@@ -3,6 +3,7 @@ import "./globals.css";
 import { Providers } from "@/components/providers";
 import Navbar from "@/components/shared/Navbar";
 import { Toaster } from "react-hot-toast";
+import Footer from "@/components/shared/Footer";
 
 const jostFont = Jost({
   variable: "--font-jost-sans",
@@ -21,10 +22,13 @@ export default function RootLayout({ children }) {
       className={`${jostFont.className} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="px-2 md:px-5" suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <Providers>
           <Navbar />
+          <div className="max-w-7xl mx-auto px-2 md:px-0">
             {children}
+          </div>
+          <Footer />
           <Toaster position="top-center" reverseOrder={false} />
         </Providers>
       </body>

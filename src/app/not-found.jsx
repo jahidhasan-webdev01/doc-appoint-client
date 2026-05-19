@@ -1,4 +1,4 @@
-// import { Button } from '@heroui/react';
+import { Button } from '@heroui/react';
 import Link from 'next/link';
 import React from 'react';
 import { FaHome } from 'react-icons/fa';
@@ -10,10 +10,10 @@ const NotFoundPage = () => {
             <p>This page is not found!</p>
 
             <Link href={"/"}>
-                {/* <Button variant='outline' className="mt-5">
+                <Button variant='outline' className="mt-5 rounded-none">
                     <FaHome />
                     Go to home
-                </Button> */}
+                </Button>
             </Link>
         </div>
     );

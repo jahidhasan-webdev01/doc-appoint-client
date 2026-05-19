@@ -21,7 +21,7 @@ export default function ThemeToggle() {
     <button
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
     >
-      {theme === 'dark' ? <FaRegMoon /> : <MdOutlineWbSunny />}
+      {theme === 'dark' ? <MdOutlineWbSunny /> : <FaRegMoon />}
     </button>
   )
 }
