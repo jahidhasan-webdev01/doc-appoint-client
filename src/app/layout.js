@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
       <body suppressHydrationWarning>
         <Providers>
           <Navbar />
-          <div className="max-w-7xl mx-auto px-2 md:px-0">
+          <div className="max-w-7xl mx-auto px-2 xl:px-0">
             {children}
           </div>
           <Footer />

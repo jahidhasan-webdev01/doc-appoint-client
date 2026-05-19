@@ -1,3 +1,4 @@
+import FAQ from "@/components/home/FAQ";
 import TopRatedDoctors from "@/components/home/TopRatedDoctors";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 
@@ -6,6 +7,7 @@ export default function Home() {
     <div>
       <TopRatedDoctors />
       <WhyChooseUs />
+      <FAQ />
     </div>
   );
 }

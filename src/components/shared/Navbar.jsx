@@ -21,7 +21,7 @@ const Navbar = () => {
 
 
   return (
-    <div className="sticky top-0 z-40 border-b border-separator bg-background/70 backdrop-blur-lg px-2 md:px-0">
+    <div className="sticky top-0 z-40 border-b border-separator bg-background/70 backdrop-blur-lg px-2 xl:px-0">
       <nav className="max-w-7xl mx-auto">
         <header className="flex h-16 items-center justify-between">
           <div className="flex items-center gap-2">
