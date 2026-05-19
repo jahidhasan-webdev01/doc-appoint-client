@@ -21,16 +21,11 @@ export default function RootLayout({ children }) {
       className={`${jostFont.className} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col px-2 md:px-5" suppressHydrationWarning>
+      <body className="px-2 md:px-5" suppressHydrationWarning>
         <Providers>
           <Navbar />
-          <div className="max-w-7xl mx-auto">
             {children}
-            <Toaster
-              position="top-center"
-              reverseOrder={false}
-            />
-          </div>
+          <Toaster position="top-center" reverseOrder={false} />
         </Providers>
       </body>
     </html>

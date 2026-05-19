@@ -8,18 +8,20 @@ import { FaGoogle } from "react-icons/fa";
 
 const GoogleLogin = ({ isLoading, setIsLoading }) => {
     const handleGoogleSignIn = async () => {
-        const data = await authClient.signIn.social({
+        const { data, error } = await authClient.signIn.social({
             provider: "google",
         });
 
         setIsLoading(false);
 
-        if (!data) {
-            toast.error("Login failed. Please try again.");
-        } else {
-            toast.success("Welcome back!");
-            redirect("/");
-        }
+        console.log({ data, error });
+
+        // if (data) {
+        //     toast.error("Login failed. Please try again.");
+        // } else {
+        //     toast.success("Welcome back!");
+        //     redirect("/");
+        // }
     };
     return (
         <div>

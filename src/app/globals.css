@@ -1,2 +1,4 @@
 @import "tailwindcss";
-@import "@heroui/styles";  
+@import "@heroui/styles";
+
+@source "./src/**/*.{js,ts,jsx,tsx}";

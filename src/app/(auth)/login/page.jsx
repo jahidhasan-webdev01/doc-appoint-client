@@ -8,7 +8,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LoginPage = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -38,25 +38,39 @@ const LoginPage = () => {
     }
 
     return (
-        <div className="h-screen flex flex-col justify-center items-center">
-            <div className="w-lg border px-5 py-10 rounded-md">
+        <div className="min-h-screen flex items-center justify-center">
+            <div className="w-full max-w-lg border rounded-md px-4 sm:px-6 md:px-8 py-8 sm:py-10">
                 <Logo />
-                <h1 className="text-center font-bold text-xl mt-5">Login</h1>
-                <Form className="mt-5 flex flex-col gap-4" onSubmit={onSubmit}>
+
+                <h1 className="text-center font-bold text-xl mt-5">
+                    Login
+                </h1>
+
+                <Form
+                    className="mt-5 flex flex-col gap-4"
+                    onSubmit={onSubmit}
+                >
 
                     <TextField
                         isRequired
                         name="email"
                         type="email"
                         validate={(value) => {
-                            if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
+                            if (
+                                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)
+                            ) {
                                 return "Please enter a valid email address";
                             }
                             return null;
                         }}
                     >
                         <Label>Email</Label>
-                        <Input placeholder="jahidhasan.webdev01@gmail.com" variant="secondary" />
+
+                        <Input
+                            placeholder="jahidhasan.webdev01@gmail.com"
+                            variant="secondary"
+                        />
+
                         <FieldError />
                     </TextField>
 
@@ -85,12 +99,14 @@ const LoginPage = () => {
                                 placeholder="Enter your password"
                                 variant="secondary"
                                 type={showPassword ? "text" : "password"}
-                                className="w-full pr-10"
+                                className="w-full"
                             />
 
                             <span
-                                onClick={() => setShowPassword(!showPassword)}
-                                className="absolute right-3 cursor-pointer"
+                                onClick={() =>
+                                    setShowPassword(!showPassword)
+                                }
+                                className="absolute right-3 cursor-pointer z-10"
                             >
                                 {showPassword ? (
                                     <FaEye className="text-sm" />
@@ -106,32 +122,43 @@ const LoginPage = () => {
                     <div>
                         <Button
                             type="submit"
-                            className="rounded-none w-full"
+                            className="w-full"
                             isDisabled={isLoading}
                         >
-                            {
-                                isLoading ?
-                                    <>
-                                        <Spinner color="current" size="sm" />
-                                        Login User
-                                    </>
-                                    :
-                                    "Login"
-                            }
+                            {isLoading ? (
+                                <>
+                                    <Spinner
+                                        color="current"
+                                        size="sm"
+                                    />
+                                    Login User
+                                </>
+                            ) : (
+                                "Login"
+                            )}
                         </Button>
                     </div>
 
-                    <div className="flex justify-center text-sm gap-1">
-                        <p>Don&lsquo;t have an account? </p>
-                        <Link href={"/register"} className="font-bold cursor-pointer">Register</Link>
+                    <div className="flex justify-center text-sm gap-1 text-center flex-wrap">
+                        <p>Don&apos;t have an account?</p>
+
+                        <Link
+                            href={"/register"}
+                            className="font-bold"
+                        >
+                            Register
+                        </Link>
                     </div>
 
                     <div>
                         <Separator />
-                        <h1 className="text-sm font-bold text-center mt-2">OR</h1>
+
+                        <h1 className="text-sm font-bold text-center mt-2">
+                            OR
+                        </h1>
                     </div>
 
-                    <GoogleLogin isLoading={isLoading} setIsLoading={setIsLoading} />
+                    <GoogleLogin />
                 </Form>
             </div>
         </div>
