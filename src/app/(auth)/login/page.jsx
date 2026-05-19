@@ -5,14 +5,17 @@ import Logo from "@/components/ui/Logo";
 import { authClient } from "@/lib/auth-client";
 import { Button, FieldError, Form, Input, Label, Separator, Spinner, TextField, } from "@heroui/react";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LoginPage = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
+
+    const searchParams = useSearchParams();
+    const callbackUrl = searchParams.get("callbackUrl") || "/";
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -33,7 +36,7 @@ const LoginPage = () => {
         } else {
             toast.success("Welcome back!");
             e.target.reset();
-            redirect("/");
+            redirect(callbackUrl);
         }
     }
 

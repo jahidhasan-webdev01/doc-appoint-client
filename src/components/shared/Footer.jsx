@@ -12,7 +12,7 @@ const Footer = () => {
                 </div>
                 <div className="col-span-3 lg:col-span-2">
                     <h1 className="font-bold">Quick Links</h1>
-                    <ul className="mt-1 gap-4 text-sm">
+                    <ul className="mt-1 space-y-2 text-sm">
                         <li>
                             <Link href="/">Home</Link>
                         </li>
