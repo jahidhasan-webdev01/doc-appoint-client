@@ -1,7 +1,7 @@
 const DashboardPage = () => {
     return (
-        <div className="h-screen flex items-center justify-center">
-            <h1>DASHBOARD</h1>
+        <div className="min-h-screen py-10">
+           <h1>All Appoints</h1>
         </div>
     );
 };
