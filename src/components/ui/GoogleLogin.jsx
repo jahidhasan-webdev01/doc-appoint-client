@@ -14,7 +14,6 @@ const GoogleLogin = ({ isLoading, setIsLoading, callbackUrl }) => {
 
         setIsLoading(false);
 
-        console.log({ data, error });
 
         // if (data) {
         //     toast.error("Login failed. Please try again.");

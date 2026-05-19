@@ -12,7 +12,6 @@ import Image from "next/image";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { data: session, isPending } = authClient.useSession();
-  console.log("session", session);
 
   const handleLogOut = async () => {
     await authClient.signOut()

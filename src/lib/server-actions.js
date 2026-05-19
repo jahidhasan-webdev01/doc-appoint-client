@@ -11,3 +11,10 @@ export const getDoctorByID = async (id) => {
 
     return data;
 }
+
+export const getAppointmentsByEmail = async (email) => {
+    const response = await fetch(`${process.env.SERVER_URL}/appointments/${email}`)
+    const data = await response.json();
+
+    return data || [];
+}
