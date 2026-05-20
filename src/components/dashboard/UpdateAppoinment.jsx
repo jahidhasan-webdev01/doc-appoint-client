@@ -1,35 +1,33 @@
-"use client";
+"use client"
 
-import React, { useState } from "react";
-import {
-    Button,
-    FieldError,
-    Input,
-    Label,
-    ListBox,
-    Modal,
-    Surface,
-    TextField,
-    Select,
-    Spinner,
-} from "@heroui/react";
-import { authClient } from "@/lib/auth-client";
+import { Button, FieldError, Input, Label, Select, ListBox, Modal, Spinner, Surface, TextField } from "@heroui/react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 
-export function BookAppointment({ doctorName }) {
+const UpdateAppoinment = ({ appoints }) => {
+    const { _id, doctorName, patientName, phone, gender, appointmentDate, appointmentTime } = appoints;
     const [isLoading, setIsLoading] = useState(false);
-    const { data } = authClient.useSession();
+
+    const convertTimeTo24h = (timeStr) => {
+        if (!timeStr) return "";
+        const [time, modifier] = timeStr.split(' ');
+        let [hours, minutes] = time.split(':');
+        if (hours === '12') {
+            hours = '00';
+        }
+        if (modifier === 'PM') {
+            hours = parseInt(hours, 10) + 12;
+        }
+        return `${String(hours).padStart(2, '0')}:${minutes}`;
+    };
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        setIsLoading(true);
 
         const formData = new FormData(e.currentTarget);
         const formEntries = Object.fromEntries(formData.entries());
 
         const appointmentData = {
-            userEmail: data?.user?.email,
-            doctorName: doctorName,
             patientName: formEntries.patientName,
             gender: formEntries.gender,
             phone: formEntries.phone,
@@ -37,10 +35,23 @@ export function BookAppointment({ doctorName }) {
             appointmentTime: formEntries.appointmentTime
         };
 
-        try {
+        const hasChanges =
+            appointmentData.patientName !== patientName ||
+            appointmentData.gender !== gender ||
+            appointmentData.phone !== phone ||
+            appointmentData.appointmentDate !== appointmentDate ||
+            appointmentData.appointmentTime !== convertTimeTo24h(appointmentTime);
 
-            const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appointments`, {
-                method: "POST",
+        if (!hasChanges) {
+            toast.error("No changes detected. Please modify a field to update.");
+            return;
+        }
+
+        setIsLoading(true);
+
+        try {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appointment/${_id}`, {
+                method: "PATCH",
                 headers: {
                     "content-type": "application/json",
                 },
@@ -48,31 +59,29 @@ export function BookAppointment({ doctorName }) {
             });
 
             if (res.ok) {
-                toast.success("Appointment booked successfully!");
+                toast.success("Appointment updated successfully!");
                 e.target.reset();
+                window.location.reload();
             } else {
-                toast.error("Failed to book appointment. Please try again.");
+                toast.error("Failed to update your booking appointment. Please try again.");
             }
         } catch (error) {
-            toast.error("An error occurred during booking.");
+            toast.error("An error occurred during updating.");
         } finally {
             setIsLoading(false);
         }
     };
-
     return (
         <div>
             <Modal>
-                <Button className="mt-5 font-medium">
-                    Book Appointment
-                </Button>
+                <Button size="sm" variant="danger-soft">Update</Button>
 
                 <Modal.Backdrop>
                     <Modal.Container placement="auto">
                         <Modal.Dialog className="p-10">
                             <Modal.CloseTrigger />
                             <Modal.Header>
-                                <Modal.Heading>Appointment Verification</Modal.Heading>
+                                <Modal.Heading>Update Appointment</Modal.Heading>
                             </Modal.Header>
                             <Modal.Body>
                                 <Surface variant="default">
@@ -81,7 +90,7 @@ export function BookAppointment({ doctorName }) {
 
                                             <div className="md:col-span-2">
                                                 <TextField
-                                                    defaultValue={doctorName || "Dr. Ayesha Rahman"}
+                                                    defaultValue={doctorName}
                                                     name="doctorName"
                                                     isDisabled
                                                 >
@@ -91,7 +100,11 @@ export function BookAppointment({ doctorName }) {
                                             </div>
 
                                             <div className="md:col-span-2">
-                                                <TextField name="patientName" isRequired>
+                                                <TextField
+                                                    name="patientName"
+                                                    defaultValue={patientName}
+                                                    isRequired
+                                                >
                                                     <Label>Patient Name</Label>
                                                     <Input
                                                         placeholder="Rahim Uddin"
@@ -104,6 +117,7 @@ export function BookAppointment({ doctorName }) {
                                             <div>
                                                 <Select
                                                     name="gender"
+                                                    defaultSelectedKey={gender}
                                                     isRequired
                                                     className="w-full"
                                                     placeholder="Select gender"
@@ -132,7 +146,12 @@ export function BookAppointment({ doctorName }) {
                                                 </Select>
                                             </div>
 
-                                            <TextField name="phone" type="tel" isRequired>
+                                            <TextField
+                                                name="phone"
+                                                type="tel"
+                                                defaultValue={phone}
+                                                isRequired
+                                            >
                                                 <Label>Phone Number</Label>
                                                 <Input
                                                     placeholder="01712345678"
@@ -141,13 +160,23 @@ export function BookAppointment({ doctorName }) {
                                                 <FieldError />
                                             </TextField>
 
-                                            <TextField name="appointmentDate" type="date" isRequired>
+                                            <TextField
+                                                name="appointmentDate"
+                                                type="date"
+                                                defaultValue={appointmentDate}
+                                                isRequired
+                                            >
                                                 <Label>Appointment Date</Label>
                                                 <Input type="date" className="rounded-2xl" />
                                                 <FieldError />
                                             </TextField>
 
-                                            <TextField name="appointmentTime" type="time" isRequired>
+                                            <TextField
+                                                name="appointmentTime"
+                                                type="time"
+                                                defaultValue={convertTimeTo24h(appointmentTime)}
+                                                isRequired
+                                            >
                                                 <Label>Appointment Time</Label>
                                                 <Input type="time" className="rounded-2xl" />
                                                 <FieldError />
@@ -156,7 +185,6 @@ export function BookAppointment({ doctorName }) {
                                         </div>
 
                                         <Modal.Footer>
-
                                             <Button
                                                 type="submit"
                                                 className="w-full"
@@ -164,14 +192,11 @@ export function BookAppointment({ doctorName }) {
                                             >
                                                 {isLoading ? (
                                                     <>
-                                                        <Spinner
-                                                            color="current"
-                                                            size="sm"
-                                                        />
-                                                        Request for an appointment
+                                                        <Spinner color="current" size="sm" />
+                                                        Updating...
                                                     </>
                                                 ) : (
-                                                    "Confirm Appointment Booking"
+                                                    "Confirm"
                                                 )}
                                             </Button>
                                         </Modal.Footer>
@@ -184,6 +209,6 @@ export function BookAppointment({ doctorName }) {
             </Modal>
         </div>
     );
-}
+};
 
-export default BookAppointment;
+export default UpdateAppoinment;

@@ -1,4 +1,5 @@
-import DeleteAppoinment from "@/components/ui/DeleteAppoinment";
+import DeleteAppoinment from "@/components/dashboard/DeleteAppoinment";
+import UpdateAppoinment from "@/components/dashboard/UpdateAppoinment";
 import { auth } from "@/lib/auth";
 import { getAppointmentsByEmail } from "@/lib/server-actions";
 import { Button } from "@heroui/react";
@@ -52,7 +53,7 @@ const DashboardPage = async () => {
                             </div>
 
                             <div className="mt-5 flex flex-row gap-2">
-                                <Button size="sm" variant="danger-soft">Update</Button>
+                                <UpdateAppoinment appoints={appoints}/>
                                 <Button size="sm" variant="outline">Review</Button>
                                 <DeleteAppoinment appoints={appoints}/>
                             </div>

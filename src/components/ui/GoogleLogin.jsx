@@ -12,6 +12,7 @@ const GoogleLogin = ({ isLoading, setIsLoading, callbackUrl }) => {
             provider: "google",
         });
 
+        console.log({ data, error });
         setIsLoading(false);
 
 

@@ -12,7 +12,7 @@ const DeleteAppoinment = ({ appoints }) => {
     const handleDelete = async () => {
         console.log("Deleted:", _id);
 
-        const res = await fetch(`http://localhost:8080/appoinment/${_id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appoinment/${_id}`, {
             method: "DELETE",
             headers: {
                 "content-type": "application/json"
