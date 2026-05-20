@@ -2,6 +2,10 @@ import DoctorCard from "@/components/ui/DoctorCard";
 import SectionTitle from "@/components/ui/SectionTitle";
 import { getAllDoctors } from "@/lib/server-actions";
 
+export const metadata = {
+  title: "All Appointments | Find perfect one for you - Doc Appoints",
+};
+
 const AllAppointmentsPage = async () => {
     const data = await getAllDoctors();
     return (

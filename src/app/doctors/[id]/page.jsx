@@ -2,6 +2,16 @@ import BookAppointment from "@/components/doctor/BookAppointment";
 import { getDoctorByID } from "@/lib/server-actions";
 import Image from "next/image";
 
+export async function generateMetadata({ params }) {
+    const { id } = await params;
+    const data = await getDoctorByID(id);
+
+    return {
+        title: data?.name ? `${data.name} | DocAppoint` : "Doctor Details | DocAppoint",
+        description: data?.description || "Book doctor appointments quickly and easily with DocAppoint.",
+    };
+}
+
 const DoctorDetails = async ({ params }) => {
     const { id } = await params;
     const data = await getDoctorByID(id);

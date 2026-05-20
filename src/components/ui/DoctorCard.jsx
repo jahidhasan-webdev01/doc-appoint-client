@@ -18,7 +18,7 @@ const DoctorCard = ({ doctor }) => {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover"
                 />
-                <p className="absolute top-2 right-0 bg-gray-200 text-sm px-3 py-0.5 rounded-l-full z-10">{experience} of experience</p>
+                <p className="absolute top-2 right-0 text-white bg-black text-sm px-3 py-0.5 rounded-l-full z-10">{experience} of experience</p>
             </div>
 
             <div className="p-5 space-y-2 flex-1 flex flex-col justify-between">

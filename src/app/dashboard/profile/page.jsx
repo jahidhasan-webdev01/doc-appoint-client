@@ -5,6 +5,10 @@ import Image from "next/image";
 import { CiViewTimeline } from "react-icons/ci";
 import { MdOutlineEmail } from "react-icons/md";
 
+export const metadata = {
+  title: "Dashboard | My Profile - Doc Appoints",
+};
+
 const ProfilePage = async () => {
     const session = await auth.api.getSession({
         headers: await headers()
@@ -27,13 +31,13 @@ const ProfilePage = async () => {
 
                     <div className="flex items-center gap-2">
                         <MdOutlineEmail className="text-xl" />
-                        <p>
+                        <p className="text-sm">
                             {user?.email}
                         </p>
                     </div>
                     <div className="flex items-center gap-2">
                         <CiViewTimeline className="text-xl" />
-                        <p>
+                        <p className="text-sm">
                             User since {new Date(user?.createdAt).toLocaleDateString(
                                 "en-US",
                                 {
