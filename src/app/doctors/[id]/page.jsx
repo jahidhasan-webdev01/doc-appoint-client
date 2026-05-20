@@ -4,6 +4,22 @@ import { getDoctorByID } from "@/lib/server-actions";
 import { headers } from "next/headers";
 import Image from "next/image";
 
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+
+  const doctor = await getDoctorByID(id, token);
+
+  return {
+    title: doctor?.name
+      ? `${doctor.name} | Doc Appoint`
+      : "Doctor Profile | Doc Appoint",
+  };
+}
+
 const DoctorDetails = async ({ params }) => {
     const { id } = await params;
     const { token } = await auth.api.getToken({
