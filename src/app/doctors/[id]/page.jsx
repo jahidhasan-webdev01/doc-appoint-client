@@ -59,7 +59,7 @@ const DoctorDetails = async ({ params }) => {
                                 Rating
                             </p>
                             <h3 className="text-lg font-semibold">
-                                {data?.rating} / 5
+                                {data?.rating.toFixed(2)} / 5
                             </h3>
                         </div>
                         <div className="border p-2 text-center rounded-md">

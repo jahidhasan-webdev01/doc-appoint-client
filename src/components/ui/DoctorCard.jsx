@@ -29,7 +29,7 @@ const DoctorCard = ({ doctor }) => {
                     </div>
                     <p className="line-clamp-2">{description}</p>
                     <div className="flex flex-col">
-                        <p className="inline-flex items-center gap-1 text-sm"><FaRegStar /> {rating}</p>
+                        <p className="inline-flex items-center gap-1 text-sm"><FaRegStar /> {rating.toFixed(2)}</p>
                         <p className="inline-flex items-center gap-1 text-sm"><MdOutlineLocalHospital /> {hospital}</p>
                         <p className="inline-flex items-center gap-1 text-sm"><MdOutlineAddLocation /> {location}</p>
                     </div>

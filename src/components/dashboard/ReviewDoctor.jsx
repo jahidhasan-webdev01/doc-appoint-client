@@ -2,16 +2,38 @@
 
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
-import { Button, Modal } from "@heroui/react";
+import { Button, Modal, Spinner } from "@heroui/react";
+import toast from "react-hot-toast";
 
 const ReviewDoctor = ({ doctorName }) => {
     const [rating, setRating] = useState(0);
     const [hoverRating, setHoverRating] = useState(0);
+    const [isLoading, setIsLoading] = useState(false);
 
     const totalStars = 5;
 
-    const handleSubmit = () => {
-        console.log(`Submitted rating for ${doctorName}: ${rating}`);
+    const handleSubmit = async () => {
+        setIsLoading(true);
+
+        try {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/give-rating/${doctorName}`, {
+                method: "PATCH",
+                headers: {
+                    "content-type": "application/json",
+                },
+                body: JSON.stringify({ rating: rating }),
+            });
+
+            if (res.ok) {
+                toast.success("Give review successfully!");
+            } else {
+                toast.error("Failed to give your review. Please try again.");
+            }
+        } catch (error) {
+            toast.error("An error occurred during giving review.");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -52,8 +74,21 @@ const ReviewDoctor = ({ doctorName }) => {
                         </Modal.Body>
 
                         <Modal.Footer>
-                            <Button size="sm" onClick={handleSubmit} disabled={rating === 0}>
-                                Submit
+                            <Button
+                                type="submit"
+                                className="w-full"
+                                size="sm"
+                                onClick={handleSubmit}
+                                isDisabled={isLoading || rating === 0}
+                            >
+                                {isLoading ? (
+                                    <div className="flex items-center gap-2">
+                                        <Spinner color="current" size="sm" />
+                                        <span>Updating...</span>
+                                    </div>
+                                ) : (
+                                    "Give Review"
+                                )}
                             </Button>
                         </Modal.Footer>
                     </Modal.Dialog>
