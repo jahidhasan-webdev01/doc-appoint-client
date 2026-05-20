@@ -1,4 +1,5 @@
 import DeleteAppoinment from "@/components/dashboard/DeleteAppoinment";
+import ReviewDoctor from "@/components/dashboard/ReviewDoctor";
 import UpdateAppoinment from "@/components/dashboard/UpdateAppoinment";
 import { auth } from "@/lib/auth";
 import { getAppointmentsByEmail } from "@/lib/server-actions";
@@ -18,7 +19,7 @@ const DashboardPage = async () => {
 
     return (
         <div className="min-h-screen py-10">
-            <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {
                     data.map((appoints, index) =>
                         <div key={index} className="border rounded-md p-5">
@@ -53,9 +54,10 @@ const DashboardPage = async () => {
                             </div>
 
                             <div className="mt-5 flex flex-row gap-2">
-                                <UpdateAppoinment appoints={appoints}/>
-                                <Button size="sm" variant="outline">Review</Button>
-                                <DeleteAppoinment appoints={appoints}/>
+                                <UpdateAppoinment appoints={appoints} />
+                                <ReviewDoctor doctorName={appoints?.doctorName}/>
+                                {/* <Button size="sm" variant="outline">Review</Button> */}
+                                <DeleteAppoinment appoints={appoints} />
                             </div>
                         </div>)
                 }

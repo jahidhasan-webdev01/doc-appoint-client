@@ -10,8 +10,6 @@ const DeleteAppoinment = ({ appoints }) => {
     const [open, setOpen] = useState(false);
 
     const handleDelete = async () => {
-        console.log("Deleted:", _id);
-
         const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appoinment/${_id}`, {
             method: "DELETE",
             headers: {

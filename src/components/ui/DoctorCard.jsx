@@ -1,10 +1,11 @@
 import { Button, Separator } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
+import { FaRegStar } from "react-icons/fa";
 import { MdOutlineAddLocation, MdOutlineLocalHospital } from "react-icons/md";
 
 const DoctorCard = ({ doctor }) => {
-    const { _id, name, image, fee, experience, specialty, description, hospital, location } = doctor;
+    const { _id, name, image, fee, experience, specialty, description, hospital, location, rating } = doctor;
     return (
         <div
             className="border rounded-md overflow-hidden flex flex-col"
@@ -28,6 +29,7 @@ const DoctorCard = ({ doctor }) => {
                     </div>
                     <p className="line-clamp-2">{description}</p>
                     <div className="flex flex-col">
+                        <p className="inline-flex items-center gap-1 text-sm"><FaRegStar /> {rating}</p>
                         <p className="inline-flex items-center gap-1 text-sm"><MdOutlineLocalHospital /> {hospital}</p>
                         <p className="inline-flex items-center gap-1 text-sm"><MdOutlineAddLocation /> {location}</p>
                     </div>

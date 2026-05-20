@@ -18,3 +18,10 @@ export const getAppointmentsByEmail = async (email) => {
 
     return data || [];
 }
+
+export const getTopRatedDoctors = async () => {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/top-doctors`)
+    const data = await response.json();
+
+    return data || [];
+}

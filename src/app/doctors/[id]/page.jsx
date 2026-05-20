@@ -6,19 +6,6 @@ const DoctorDetails = async ({ params }) => {
     const { id } = await params;
     const data = await getDoctorByID(id);
 
-    const destination = {
-  _id: "dest_001",
-  imageUrl: "https://i.ibb.co/7QpKsCX/paris.jpg",
-  price: 1299,
-  destinationName: "Paris Getaway",
-  duration: "7 Days / 6 Nights",
-  country: "France",
-  description:
-    "Explore the beauty of Paris with guided city tours, Eiffel Tower visits, and delicious French cuisine.",
-  category: "Romantic",
-  departureDate: "2026-06-15",
-};
-
     return (
         <div className="min-h-screen py-10">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
@@ -42,7 +29,7 @@ const DoctorDetails = async ({ params }) => {
                         {data?.description}
                     </p>
 
-                    <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-2">
+                    <div className="mt-5 grid grid-cols-2 md:grid-cols-3 gap-2">
                         <div className="border p-2 text-center rounded-md">
                             <p className="text-sm">
                                 Experience
@@ -65,6 +52,14 @@ const DoctorDetails = async ({ params }) => {
                             </p>
                             <h3 className="text-lg font-semibold">
                                 {data?.location}
+                            </h3>
+                        </div>
+                        <div className="border p-2 text-center rounded-md">
+                            <p className="text-sm">
+                                Rating
+                            </p>
+                            <h3 className="text-lg font-semibold">
+                                {data?.rating} / 5
                             </h3>
                         </div>
                         <div className="border p-2 text-center rounded-md">
@@ -93,7 +88,7 @@ const DoctorDetails = async ({ params }) => {
                             ))}
                         </div>
                     </div>
-                    <BookAppointment destination = {destination} doctorName={data?.name}/>
+                    <BookAppointment doctorName={data?.name} />
 
                 </div>
             </div>
