@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { AlertDialog, Button } from "@heroui/react";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -10,23 +11,37 @@ const DeleteAppoinment = ({ appoints }) => {
     const [open, setOpen] = useState(false);
 
     const handleDelete = async () => {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appoinment/${_id}`, {
-            method: "DELETE",
-            headers: {
-                "content-type": "application/json"
+        const { data: tokenData } = await authClient.token();
+        try {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appoinment/${_id}`, {
+                method: "DELETE",
+                headers: {
+                    "content-type": "application/json",
+                    "authorization": `Bearer ${tokenData?.token}`
+                }
+            });
+
+            if (!res.ok) {
+                toast.error("Appointment could not be deleted");
             }
-        })
 
-        const data = await res.json();
+            const data = await res.json();
 
-        if (data.deletedCount > 0) {
-            toast.success("Appointment deleted successfully")
+            if (data?.deletedCount > 0) {
+                toast.success("Appointment deleted successfully");
 
+                setOpen(false);
+                window.location.reload();
+                return;
+            } else {
+                toast.error("Appointment could not be deleted");
+            }
+
+        } catch (error) {
+            toast.error("Something went wrong. Please try again.");
+        } finally {
             setOpen(false);
-            window.location.reload();
         }
-
-        setOpen(false);
     };
 
     return (

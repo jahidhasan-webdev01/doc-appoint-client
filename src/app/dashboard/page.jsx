@@ -11,14 +11,18 @@ import { IoMdTimer } from "react-icons/io";
 import { MdOutlineDateRange } from "react-icons/md";
 
 export const metadata = {
-  title: "Dashboard | My Appointments - Doc Appoints",
+    title: "Dashboard | My Appointments - Doc Appoints",
 };
 
 const DashboardPage = async () => {
     const session = await auth.api.getSession({
         headers: await headers()
     })
-    const data = await getAppointmentsByEmail(session?.user?.email);
+
+    const { token } = await auth.api.getToken({
+        headers: await headers()
+    })
+    const data = await getAppointmentsByEmail(session?.user?.email, token);
 
     return (
         <div className="min-h-screen py-10">

@@ -5,15 +5,23 @@ export const getAllDoctors = async () => {
     return data || [];
 }
 
-export const getDoctorByID = async (id) => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/doctor/${id}`)
+export const getDoctorByID = async (id, token) => {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/doctor/${id}`, {
+        headers: {
+            "authorization": `Bearer ${token}`
+        }
+    });
+
     const data = await response.json();
-
     return data;
-}
+};
 
-export const getAppointmentsByEmail = async (email) => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appointments/${email}`)
+export const getAppointmentsByEmail = async (email, token) => {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appointments/${email}`, {
+        headers: {
+            "authorization": `Bearer ${token}`
+        }
+    })
     const data = await response.json();
 
     return data || [];

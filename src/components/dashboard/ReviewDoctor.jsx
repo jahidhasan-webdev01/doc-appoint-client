@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { Button, Modal, Spinner } from "@heroui/react";
 import toast from "react-hot-toast";
+import { authClient } from "@/lib/auth-client";
 
 const ReviewDoctor = ({ doctorName }) => {
     const [rating, setRating] = useState(0);
@@ -15,11 +16,13 @@ const ReviewDoctor = ({ doctorName }) => {
     const handleSubmit = async () => {
         setIsLoading(true);
 
+        const { data } = await authClient.token();
         try {
             const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/give-rating/${doctorName}`, {
                 method: "PATCH",
                 headers: {
                     "content-type": "application/json",
+                    "authorization": `Bearer ${data?.token}`
                 },
                 body: JSON.stringify({ rating: rating }),
             });

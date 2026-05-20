@@ -1,5 +1,6 @@
 "use client"
 
+import { authClient } from "@/lib/auth-client";
 import { Button, FieldError, Input, Label, Select, ListBox, Modal, Spinner, Surface, TextField } from "@heroui/react";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -7,6 +8,7 @@ import toast from "react-hot-toast";
 const UpdateAppoinment = ({ appoints }) => {
     const { _id, doctorName, patientName, phone, gender, appointmentDate, appointmentTime } = appoints;
     const [isLoading, setIsLoading] = useState(false);
+
 
     const convertTimeTo24h = (timeStr) => {
         if (!timeStr) return "";
@@ -49,11 +51,15 @@ const UpdateAppoinment = ({ appoints }) => {
 
         setIsLoading(true);
 
+
+        const { data } = await authClient.token();
+
         try {
             const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appointment/${_id}`, {
                 method: "PATCH",
                 headers: {
                     "content-type": "application/json",
+                    "authorization": `Bearer ${data?.token}`
                 },
                 body: JSON.stringify(appointmentData),
             });

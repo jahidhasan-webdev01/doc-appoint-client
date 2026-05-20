@@ -16,7 +16,7 @@ import {
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 
-export function BookAppointment({ doctorName }) {
+const BookAppointment = ({ doctorName }) => {
     const [isLoading, setIsLoading] = useState(false);
     const { data } = authClient.useSession();
 
@@ -37,12 +37,13 @@ export function BookAppointment({ doctorName }) {
             appointmentTime: formEntries.appointmentTime
         };
 
+        const { data: tokenData } = await authClient.token();
         try {
-
             const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appointments`, {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",
+                    "authorization": `Bearer ${tokenData?.token}`
                 },
                 body: JSON.stringify(appointmentData),
             });
