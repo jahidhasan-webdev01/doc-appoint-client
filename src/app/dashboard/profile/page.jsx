@@ -1,5 +1,5 @@
+import UpdateProfile from "@/components/ui/UpdateProfile";
 import { auth } from "@/lib/auth";
-import { Button } from "@heroui/react";
 import { headers } from "next/headers";
 import Image from "next/image";
 import { CiViewTimeline } from "react-icons/ci";
@@ -44,12 +44,7 @@ const ProfilePage = async () => {
                             )}
                         </p>
                     </div>
-
-                    <div className="pt-2">
-                        <Button variant="outline" size="sm">
-                            Update Profile
-                        </Button>
-                    </div>
+                    <UpdateProfile user={user}/>
                 </div>
             </div>
         </div>
