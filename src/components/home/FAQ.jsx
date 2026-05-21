@@ -1,11 +1,5 @@
 import {
-    ArrowsRotateLeft,
-    Box,
     ChevronDown,
-    CreditCard,
-    PlanetEarth,
-    Receipt,
-    ShoppingBag,
 } from "@gravity-ui/icons";
 import { Accordion } from "@heroui/react";
 import SectionTitle from "../ui/SectionTitle";
