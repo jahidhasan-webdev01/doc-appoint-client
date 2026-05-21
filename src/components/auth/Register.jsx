@@ -73,28 +73,21 @@ const Register = () => {
 
                     <TextField
                         isRequired
-                        name="password"
-                        type="password"
+                        name="email"
+                        type="email"
                         validate={(value) => {
-                            if (!value) {
-                                return "Password is required";
-                            }
-                            if (value.length < 6) {
-                                return "Password must be at least 6 characters long";
-                            }
-                            if (!/[A-Z]/.test(value)) {
-                                return "Password must contain at least one uppercase letter";
-                            }
-                            if (!/[a-z]/.test(value)) {
-                                return "Password must contain at least one lowercase letter";
+                            if (
+                                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)
+                            ) {
+                                return "Please enter a valid email address";
                             }
                             return null;
                         }}
                     >
-                        <Label>Password</Label>
+                        <Label>Email</Label>
 
                         <Input
-                            placeholder="Enter your password"
+                            placeholder="jahidhasan.webdev01@gmail.com"
                             variant="secondary"
                         />
 
