@@ -53,9 +53,9 @@ const SearchDoctors = ({ doctors }) => {
                         onChange={(e) => setSortBy(e.target.value)}
                         className="w-full sm:w-48 px-3 py-2 border rounded-md text-sm focus:outline-hidden focus:ring-2 focus:ring-blue-500 transition-all cursor-pointer"
                     >
-                        <option value="">Default</option>
-                        <option value="fee-asc">Fee: Low to High</option>
-                        <option value="fee-dsc">Fee: High to Low</option>
+                        <option value="" className="text-black">Default</option>
+                        <option value="fee-asc" className="text-black">Fee: Low to High</option>
+                        <option value="fee-dsc" className="text-black">Fee: High to Low</option>
                     </select>
                 </div>
             </div>
