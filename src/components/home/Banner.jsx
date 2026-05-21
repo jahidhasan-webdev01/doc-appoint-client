@@ -3,11 +3,12 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, EffectFade } from "swiper/modules";
-import { Star } from "lucide-react";
 
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
+import { Button } from "@heroui/react";
+import Link from "next/link";
 
 const Banner = () => {
     const slides = [
@@ -47,7 +48,7 @@ const Banner = () => {
     ];
 
     return (
-        <div className="w-full h-[90vh]">
+        <div className="w-full h-[80vh]">
             <Swiper
                 modules={[Autoplay, Pagination, EffectFade]}
                 effect="fade"
@@ -63,54 +64,54 @@ const Banner = () => {
                         "inline-block w-2 h-2 rounded-full bg-white/50 mx-1 cursor-pointer transition-all duration-300",
                     bulletActiveClass: "!bg-white !w-6",
                 }}
-                className="w-full h-screen"
+                className="w-full h-[80vh]"
             >
                 {slides.map((slide) => (
                     <SwiperSlide key={slide.id}>
                         <div
-                            className="relative w-full h-screen bg-cover bg-center text-white flex flex-col p-6 sm:p-10 md:p-16"
+                            className="relative w-full h-[80vh] bg-cover bg-center"
                             style={{
                                 backgroundImage: `url(${slide.image})`,
                             }}
                         >
                             <div className="absolute inset-0 bg-black/60" />
-
                             <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-black/20" />
 
-                            <div className="relative z-10 flex justify-between items-start">
-                                <span className="backdrop-blur-md bg-white/10 border border-white/20 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold">
-                                    {slide.tag}
-                                </span>
+                            <div className="absolute inset-0 z-10 flex items-center justify-start">
+                                <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 text-left">
 
-                                <div className="flex items-center gap-1 backdrop-blur-md bg-black/30 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold">
-                                    <Star className="h-4 w-4 fill-white" />
-                                    {slide.rating}
-                                </div>
-                            </div>
+                                    <div className="max-w-3xl space-y-5">
+                                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white">
+                                            {slide.title}
+                                        </h1>
 
-                            <div className="relative z-10 flex-1 flex items-center justify-start">
-                                <div className="max-w-3xl text-left space-y-5">
-                                    <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold leading-tight">
-                                        {slide.title}
-                                    </h1>
+                                        <p className="text-sm sm:text-lg text-slate-200 max-w-2xl">
+                                            {slide.description}
+                                        </p>
 
-                                    <p className="text-sm sm:text-lg text-slate-200 max-w-2xl">
-                                        {slide.description}
-                                    </p>
+                                        <div>
+                                            {slide.features.map((feat, index) => (
+                                                <p
+                                                    key={index}
+                                                    className="backdrop-blur-md bg-transparent px-4 py-2 rounded-lg text-xs sm:text-sm font-medium text-white"
+                                                >
+                                                    ✓ {feat}
+                                                </p>
+                                            ))}
+                                        </div>
 
-                                    <div className="flex flex-wrap gap-3 pt-2">
-                                        {slide.features.map((feat, idx) => (
-                                            <span
-                                                key={idx}
-                                                className="backdrop-blur-md bg-white/10 border border-white/20 px-4 py-2 rounded-lg text-xs sm:text-sm font-medium"
-                                            >
-                                                ✓ {feat}
-                                            </span>
-                                        ))}
+                                        <div className="flex flex-row flex-wrap gap-2">
+                                            <Link href="/appointments">
+                                                <Button size="sm" >Book an appoinment</Button>
+                                            </Link>
+                                            <Link href="/register">
+                                                <Button size="sm" variant="secondary">Join Now</Button>
+                                            </Link>
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
-
                         </div>
                     </SwiperSlide>
                 ))}

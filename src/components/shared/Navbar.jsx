@@ -67,7 +67,7 @@ const Navbar = () => {
             </li>
           </ul>
 
-          <div className="flex flex-row gap-3 items-center">
+          <div className="flex flex-row gap-2 md:gap-3 items-center">
             <ThemeToggle />
             {
               isPending ?

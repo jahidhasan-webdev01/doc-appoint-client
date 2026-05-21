@@ -41,7 +41,7 @@ const Login = () => {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center">
+        <div className="max-w-7xl mx-auto px-2 xl:px-0 min-h-screen flex items-center justify-center">
             <div className="w-full max-w-lg border rounded-md px-4 sm:px-6 md:px-8 py-8 sm:py-10">
                 <Logo />
 

@@ -11,7 +11,7 @@ const AllAppointmentsPage = async () => {
     const doctors = data || [];
 
     return (
-        <div className="py-10">
+        <div className="max-w-7xl mx-auto px-2 xl:px-0 py-10">
             <SectionTitle title={"All Appointments"} />
 
             <SearchDoctors doctors={doctors}/>

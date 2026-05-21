@@ -29,7 +29,7 @@ const DoctorDetails = async ({ params }) => {
     const data = await getDoctorByID(id, token)
 
     return (
-        <div className="min-h-screen py-10">
+        <div className="max-w-7xl mx-auto px-2 xl:px-0 min-h-screen py-10">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
                 <div className="relative h-72 md:h-125 lg:h-full min-h-125">

@@ -26,9 +26,7 @@ export default function RootLayout({ children }) {
       <body suppressHydrationWarning>
         <Providers>
           <Navbar />
-          {/* <div className="max-w-7xl mx-auto px-2 xl:px-0"> */}
-            {children}
-          {/* </div> */}
+          {children}
           <Footer />
           <Toaster position="top-center" reverseOrder={false} />
         </Providers>

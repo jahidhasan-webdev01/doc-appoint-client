@@ -16,7 +16,7 @@ const ProfilePage = async () => {
 
     const user = session?.user;
     return (
-        <div className="min-h-screen py-10">
+        <div className="min-h-screen py-10 ">
             <div className="grid grid-cols-1 md:grid-cols-2">
                 <div className="border rounded-md p-5 flex flex-col justify-center items-center space-y-2">
                     <div className="relative w-28 h-28 rounded-full overflow-hidden border">

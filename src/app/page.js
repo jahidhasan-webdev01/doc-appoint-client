@@ -7,9 +7,11 @@ export default function Home() {
   return (
     <div>
       <Banner />
-      <TopRatedDoctors />
-      <WhyChooseUs />
-      <FAQ />
+      <div className="mt-10 max-w-7xl mx-auto px-2 xl:px-0">
+        <TopRatedDoctors />
+        <WhyChooseUs />
+        <FAQ />
+      </div>
     </div>
   );
 }

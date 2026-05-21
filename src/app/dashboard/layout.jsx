@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function DashboardLayout({ children }) {
   return (
-    <div className='min-h-screen py-10'>
+    <div className='max-w-7xl mx-auto px-2 xl:px-0 min-h-screen py-10'>
 
       <SectionTitle title="Dashboard" />
       <div className='mt-5 flex flex-row gap-2'>
