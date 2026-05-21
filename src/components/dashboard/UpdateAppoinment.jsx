@@ -1,17 +1,22 @@
-"use client"
+"use client";
 
 import { authClient } from "@/lib/auth-client";
 import { Button, FieldError, Input, Label, Select, ListBox, Modal, Spinner, Surface, TextField } from "@heroui/react";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const UpdateAppoinment = ({ appoints }) => {
     const { _id, doctorName, patientName, phone, gender, appointmentDate, appointmentTime } = appoints;
+    const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-
+    const router = useRouter();
 
     const convertTimeTo24h = (timeStr) => {
         if (!timeStr) return "";
+        if (!timeStr.toLowerCase().includes("am") && !timeStr.toLowerCase().includes("pm")) {
+            return timeStr;
+        }
         const [time, modifier] = timeStr.split(' ');
         let [hours, minutes] = time.split(':');
         if (hours === '12') {
@@ -51,10 +56,9 @@ const UpdateAppoinment = ({ appoints }) => {
 
         setIsLoading(true);
 
-
-        const { data } = await authClient.token();
-
         try {
+            const { data } = await authClient.token();
+
             const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appointment/${_id}`, {
                 method: "PATCH",
                 headers: {
@@ -66,8 +70,8 @@ const UpdateAppoinment = ({ appoints }) => {
 
             if (res.ok) {
                 toast.success("Appointment updated successfully!");
-                e.target.reset();
-                window.location.reload();
+                router.refresh(); 
+                setIsOpen(false); 
             } else {
                 toast.error("Failed to update your booking appointment. Please try again.");
             }
@@ -77,11 +81,14 @@ const UpdateAppoinment = ({ appoints }) => {
             setIsLoading(false);
         }
     };
+
     return (
         <div>
-            <Modal>
-                <Button size="sm" variant="danger-soft">Update</Button>
+            <Button size="sm" variant="danger-soft" onPress={() => setIsOpen(true)}>
+                Update
+            </Button>
 
+            <Modal isOpen={isOpen} onOpenChange={setIsOpen}>
                 <Modal.Backdrop>
                     <Modal.Container placement="auto">
                         <Modal.Dialog className="p-10">
@@ -197,10 +204,10 @@ const UpdateAppoinment = ({ appoints }) => {
                                                 isDisabled={isLoading}
                                             >
                                                 {isLoading ? (
-                                                    <>
+                                                    <div className="flex items-center justify-center gap-2">
                                                         <Spinner color="current" size="sm" />
-                                                        Updating...
-                                                    </>
+                                                        <span>Updating...</span>
+                                                    </div>
                                                 ) : (
                                                     "Confirm"
                                                 )}

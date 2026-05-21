@@ -12,16 +12,14 @@ const GoogleLogin = ({ isLoading, setIsLoading, callbackUrl }) => {
             provider: "google",
         });
 
-        console.log({ data, error });
-        setIsLoading(false);
-
-
-        // if (data) {
-        //     toast.error("Login failed. Please try again.");
-        // } else {
-        //     toast.success("Welcome back!");
-        //     redirect("/");
-        // }
+        if (data) {
+            toast.error("Login failed. Please try again.");
+        } else {
+            toast.success("Welcome back!");
+            redirect(callbackUrl);
+        }
+        
+        setIsLoading(false)
     };
     return (
         <div>

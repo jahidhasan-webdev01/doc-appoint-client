@@ -120,6 +120,10 @@ const Login = () => {
                         </div>
 
                         <FieldError />
+
+                        <div className="text-end my-1">
+                            <p className="text-xs">Forgot Password?</p>
+                        </div>
                     </TextField>
 
                     <div>

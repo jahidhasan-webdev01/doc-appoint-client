@@ -17,6 +17,7 @@ import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 
 const BookAppointment = ({ doctorName }) => {
+    const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const { data } = authClient.useSession();
 
@@ -37,8 +38,8 @@ const BookAppointment = ({ doctorName }) => {
             appointmentTime: formEntries.appointmentTime
         };
 
-        const { data: tokenData } = await authClient.token();
         try {
+            const { data: tokenData } = await authClient.token();
             const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/appointments`, {
                 method: "POST",
                 headers: {
@@ -51,6 +52,7 @@ const BookAppointment = ({ doctorName }) => {
             if (res.ok) {
                 toast.success("Appointment booked successfully!");
                 e.target.reset();
+                setIsOpen(false);
             } else {
                 toast.error("Failed to book appointment. Please try again.");
             }
@@ -63,11 +65,11 @@ const BookAppointment = ({ doctorName }) => {
 
     return (
         <div>
-            <Modal>
-                <Button className="mt-5 font-medium">
-                    Book Appointment
-                </Button>
+            <Button className="mt-5 font-medium" onPress={() => setIsOpen(true)}>
+                Book Appointment
+            </Button>
 
+            <Modal isOpen={isOpen} onOpenChange={setIsOpen}>
                 <Modal.Backdrop>
                     <Modal.Container placement="auto">
                         <Modal.Dialog className="p-10">
@@ -157,20 +159,16 @@ const BookAppointment = ({ doctorName }) => {
                                         </div>
 
                                         <Modal.Footer>
-
                                             <Button
                                                 type="submit"
                                                 className="w-full"
                                                 isDisabled={isLoading}
                                             >
                                                 {isLoading ? (
-                                                    <>
-                                                        <Spinner
-                                                            color="current"
-                                                            size="sm"
-                                                        />
-                                                        Request for an appointment
-                                                    </>
+                                                    <div className="flex items-center justify-center gap-2">
+                                                        <Spinner color="current" size="sm" />
+                                                        <span>Booking...</span>
+                                                    </div>
                                                 ) : (
                                                     "Confirm Appointment Booking"
                                                 )}
@@ -185,6 +183,6 @@ const BookAppointment = ({ doctorName }) => {
             </Modal>
         </div>
     );
-}
+};
 
 export default BookAppointment;
