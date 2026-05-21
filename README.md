@@ -1,6 +1,6 @@
-# 🩺 DocAppoint - Doctor Appointment Manager
+# 🩺 DocAppoint
 
-🔗 Live Site: https://your-live-site-url.com
+🔗 Live Site: https://doc-appoint-client-sigma.vercel.app
 
 DocAppoint is a modern and user-friendly doctor appointment booking platform where patients can easily find doctors, view details, and book appointments online. It also includes secure authentication, dashboard management, and profile control for a smooth healthcare experience.
 
