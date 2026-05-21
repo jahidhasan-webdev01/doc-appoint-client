@@ -9,7 +9,7 @@ export default function DashboardLayout({ children }) {
       <SectionTitle title="Dashboard" />
       <div className='mt-5 flex flex-row gap-2'>
         <Link href={"/dashboard"}>
-          <Button variant='outline' size="sm">My Appointments</Button>
+          <Button variant='outline' size="sm">My Bookings</Button>
         </Link>
         <Link href={"/dashboard/profile"}>
           <Button variant='outline' size="sm">Profile</Button>
