@@ -165,7 +165,7 @@ const Login = () => {
                         </h1>
                     </div>
 
-                    <GoogleLogin isLoading={isLoading} setIsLoading={setIsLoading} callbackUrl={callbackUrl} />
+                    <GoogleLogin callbackUrl={callbackUrl} />
                 </Form>
             </div>
         </div>
