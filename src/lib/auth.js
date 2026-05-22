@@ -27,8 +27,7 @@ export const auth = betterAuth({
             strategy: "jwt",
             maxAge: 7 * 24 * 60 * 60
         }
-    }
-    ,
+    },
     plugins: [
         jwt(),
     ]

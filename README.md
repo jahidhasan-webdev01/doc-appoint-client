@@ -1,48 +1,55 @@
 # 🩺 DocAppoint
 
-🔗 Live Site: https://doc-appoint-client-sigma.vercel.app
+A modern and responsive Doctor Appointment Management System where users can browse doctors, view detailed information, and book appointments securely.
 
-DocAppoint is a modern and user-friendly doctor appointment booking platform where patients can easily find doctors, view details, and book appointments online. It also includes secure authentication, dashboard management, and profile control for a smooth healthcare experience.
-
----
-
-## ✨ Key Features
-
-- 🗓️ **Easy Appointment Booking**  
-  Book doctor appointments quickly from anywhere without long waiting times.
-
-- 👨‍⚕️ **Verified Doctors**  
-  Browse experienced and trusted doctors from multiple medical specialties.
-
-- 🔐 **Secure Authentication System**  
-  Protected login and registration using Better Auth with secure session handling.
-
-- 📊 **Personal Dashboard**  
-  Manage your bookings, update appointments, and view your profile in one place.
-
-- 📅 **Smart Appointment Management**  
-  Update or delete appointments easily with instant UI updates and feedback.
-
-- 🔍 **Doctor Search & Details**  
-  View detailed doctor profiles including experience, hospital, availability, and consultation fee.
-
-- ⭐ **Why Choose Us Section**  
-  Modern healthcare experience with fast support, verified doctors, and secure data handling.
-
-- ❓ **FAQ Section**  
-  Helpful answers to common patient questions for better user understanding.
+## 🌐 Live Website
+https://doc-appoint-client-sigma.vercel.app
 
 ---
 
-## 🛠️ Tech Stack
+## ✨ Features
 
-- Next.js 16 (App Router)
-- React 19
+- 🔐 Secure authentication system using Better Auth with JWT/session
+- 👨‍⚕️ Browse top-rated doctors dynamically from the homepage
+- 📅 Book doctor appointments with a user-friendly booking form
+- 🧾 Manage appointments with update and delete functionality
+- 👤 User profile management with instant UI update
+- 🔍 Search doctors by name on the appointments page
+- 🚀 Protected private routes with persistent login session
+- ⚡ Loading spinner and custom 404 page
+- 📱 Fully responsive for mobile, tablet, and desktop devices
+- 🎨 Modern UI design with reusable components and consistent styling
+
+---
+
+## 🛠️ Technologies Used
+
+### Frontend
+- Next.js
+- React.js
 - Tailwind CSS
-- MongoDB
-- Better Auth (JWT/Session)
+- Hero UI
 - Swiper.js
+- React Icons
 - React Hot Toast
-- HeroUI Components
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- Better Auth
+- JWT Authentication
+
+---
+
+## 📂 Main Pages
+
+- 🏠 Home Page
+- 📋 All Appointments Page
+- 👨‍⚕️ Doctor Details Page
+- 📊 Dashboard
+  - My Bookings
+  - My Profile
+- 🔐 Login & Register Pages
 
 ---
