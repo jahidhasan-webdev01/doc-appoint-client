@@ -6,15 +6,16 @@ import { redirect } from "next/navigation";
 import toast from "react-hot-toast";
 import { FaGoogle } from "react-icons/fa";
 
-const GoogleLogin = ({ callbackUrl }) => {
+const GoogleLogin = () => {
     const handleGoogleSignIn = async () => {
         const data = await authClient.signIn.social({
-            provider: "google",
+            provider: "google", 
         });
 
         if (data) {
+            console.log(data);
             toast.success("Welcome back!");
-            redirect(callbackUrl);
+            redirect('/');
         }
 
     };

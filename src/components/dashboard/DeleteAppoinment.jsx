@@ -35,7 +35,7 @@ const DeleteAppoinment = ({ appoints }) => {
             const data = await res.json();
 
             if (data?.deletedCount > 0) {
-                toast.success("Appointment deleted successfully");
+                toast.success("Appointment deleted successfully!");
                 router.refresh(); 
                 setOpen(false);
             } else {

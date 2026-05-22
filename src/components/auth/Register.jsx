@@ -201,7 +201,7 @@ const Register = () => {
                         </h1>
                     </div>
 
-                    <GoogleLogin callbackUrl={"/"} />
+                    <GoogleLogin />
                 </Form>
             </div>
         </div>
