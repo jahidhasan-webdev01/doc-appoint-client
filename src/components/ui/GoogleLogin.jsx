@@ -13,7 +13,6 @@ const GoogleLogin = () => {
         });
 
         if (data) {
-            console.log(data);
             toast.success("Welcome back!");
             redirect('/');
         }
